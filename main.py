@@ -180,7 +180,7 @@ if __name__ == "__main__":
     print("Creating .CSV Template...")
     csv_table = [header_row]
 
-    # Step 4a. Loop through interface output for each switch to generate detailed report. 
+    # Step 4a. Call the DNA Center API **Get Device Interface count** to iterate through all Device IDs and identify all *available* interfaces, all *down* interfaces, and all *up* interfaces ( excluding Bluetooth, Management, and App interfaces, etc.)
     # Step 4b. Use regex to generate accurate interface report for specific switch model types. Modify as needed!
     print("Generating detailed report for each switch..")
     spacer()
