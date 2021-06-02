@@ -9,14 +9,13 @@
 # Purpose
 **The purpose of this code is to assist network engineers to programatically generate an interface capacity report for fabric-enabled switches in the DNA Center Inventory.**
 
-This code is intended for network engineers tasked with providing interfaces reports on a per-switch basis.**
-
 Note:
 - You can update regular expressions within the code to get more accurate reports on different model types. 
 - This code utilizes three DNA Center APIs: 'Get Token', 'Get Device by ID' and 'Get Interface info by Id' 
 - A .CSV file will be generated at the end of this script.
 
 # Intended Audience
+**This code is intended for network engineers tasked with providing interfaces reports on a per-switch basis.**
 This code is particularly useful for network engineers who need to generate a report of available interfaces across multiple fabric enabled switches.
 
 For example, imagine the following:
@@ -36,10 +35,10 @@ This code intends to accomplish the following tasks:
 1. Call the DNA Center API **Authentication API** with your DNA Center IP address, username, and password to generate an auth-x token for subsequent API calls.
 2. Call the DNA Center API **Get Device list** to identify all Device UUIDs based on a comma-seperated list of hostnames.
 3. Generate CSV Template
-4a. Call the DNA Center API **Get Device Interface count** to iterate through all Device IDs and identify all *available* interfaces, all *down* interfaces, and all *up* interfaces ( excluding Bluetooth, Management, and App interfaces, etc.)
-4b. Leverage regex to generate specific interface reports for access ports and module ports, depending on the switch series.
-5. Output a PrettyTable report of the analysis on your terminal.
-6. Generate a .CSV file report with with additional switch info, which can be shared with management. 
+4. Call the DNA Center API **Get Device Interface count** to iterate through all Device IDs and identify all *available* interfaces, all *down* interfaces, and all *up* interfaces ( excluding Bluetooth, Management, and App interfaces, etc.)
+5. Leverage regex to generate specific interface reports for access ports and module ports, depending on the switch series.
+6. Output a PrettyTable report of the analysis on your terminal.
+7. Generate a .CSV file report with with additional switch info, which can be shared with management. 
 
 # Installation Steps
 
