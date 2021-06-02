@@ -139,7 +139,6 @@ def network_interfaces(token, hostname, id, series):
         access = re.compile(r'(^\D+[1-8])(/0)(/\w)')
 
     try:
-        
         for inter in total_up:
             mod = re.search(module, str(inter))
             if mod is not None:
