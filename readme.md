@@ -8,14 +8,17 @@ A .CSV file will be generated at the end of this script.
 # Summary
 This code is particularly useful when you need to output a report of available interfaces across multiple switches.
 
-For example, imagine you have a campus building that currently has five switches. Management expects that the business will add additional cubicles and users to each floor, and needs port density report for the building on a per-floor basis.
-You want to perform capacity planning to understand how many additional switches you will need for this building.
-Run this code yo generate a .CSV report with the utilization details:
-    - Count of UP Access Ports
-    - Count of UP Module Ports (or, Uplinks)
-    - Count of Total UP Ports
-    - Count of Total DOWN  Ports
-    - Count of Total Ports
+For example, imagine the following:
+- You have a campus building that currently has five switches. 
+- The business plans to add additional cubicles and users to each floor. 
+- The network team needs to properly plan and budget for increase port density per floor.
+
+Run this to generate a .CSV report of interface utilizaton for each switch to properly plan and budget the network expansion with the following details:
+- Count of UP Access Ports
+- Count of UP Module Ports (or, Uplinks)
+- Count of Total UP Ports
+- Count of Total DOWN  Ports
+- Count of Total Ports
 
 # How it works
 This Python code intends to accomplish the following tasks:
