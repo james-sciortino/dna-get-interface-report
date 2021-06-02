@@ -1,14 +1,21 @@
 # DNA-Get-Interface-Report
-This script is for the Cisco DNA Center Platform and Cisco Catalyst 9300 and 9400 Switches only. It might work on 3850 switches.
-It utilizes two DNA Center APIs: 'Get Device by ID' and 'Get Interface info by Id' 
+This code is for the Cisco DNA Center Platform and has been tested on following Cisco Catalyst 9300 and 9400 switch models: *C9300L-48UXG-4X, C9300-48UXM, C9410R*
+You can update regular expressions within the code to get more accurate reports on different model types. 
+This code utilizes three DNA Center APIs: 'Get Token', 'Get Device by ID' and 'Get Interface info by Id' 
 This script is intended for network engineers tasked with providing interfaces reports on a per-switch basis.
-A .CSV file can be generated for management.
+A .CSV file will be generated at the end of this script.
 
 # Summary
-Site-tags on the C9800 Wireless Controller Platform serve the following purposes:
-1. Define if an AP is configured for Local Mode or Flexconnect mode, and also contains the AP Join Profile and Flex Profile that is applied to the AP.
-2. Include attributes that are specific to the physical site. For example, the list of primary APs for efficient upgrade is a part of a site-tag.
-3. Used as a AAA RADIUS attribute in Cisco ISE, particularly to differentiate authorization results for wireless clients associating to different APs.
+This code is particularly useful when you need to output a report of available interfaces across multiple switches.
+
+For example, imagine you have a campus building that currently has five switches. Management expects that the business will add additional cubicles and users to each floor, and needs port density report for the building on a per-floor basis.
+You want to perform capacity planning to understand how many additional switches you will need for this building.
+Run this code yo generate a .CSV report with the utilization details:
+    - Count of UP Access Ports
+    - Count of UP Module Ports (or, Uplinks)
+    - Count of Total UP Ports
+    - Count of Total DOWN  Ports
+    - Count of Total Ports
 
 # How it works
 This Python code intends to accomplish the following tasks:
@@ -18,7 +25,7 @@ This Python code intends to accomplish the following tasks:
 - Step 4. Output a PrettyTable report for each switch.
 - Step 5. *Optional* Output a .CSV file report with with additional switch info, which can be provided to management. 
 
-For Fabric Enabled or Non-Fabric Enabled Switches:
+# For Fabric Enabled or Non-Fabric Enabled Switches:
 This code is particularly useful when you need to output a report of available interfaces across multiple switches.
 For example, if you have a campus building that currently has five floors -- and two Catalyst 9300 switches per floor.
 Management expects that the business will add additional cubicles and users to each floor, and needs port density report for the building on a per-floor basis.
@@ -41,11 +48,11 @@ Run this code to generate the current utilization report.
 Example Use-Case:
 Imagine you have a building on your Campus LAN which the business plans to expand with new users, new cubicles, new Access Points, etc. 
 Your manager tasks you with generating a report of *existing* active interfaces on the *existing* switches in the building, to better understand how many new switches are required.
-The generated report will detail how many *access* ports are used, how many *module* (or, *uplink*) interfaces are used, and how many interfaces are currently available.
-You will be presented with a PrettyTable in your Bash or PowerShell terminal with this report, and a .CSV file will be created with this report. 
-The .CSV file will be titled with today's date, and can be shared with management. 
+    - The generated report will detail how many *access* ports are used, how many *module* (or, *uplink*) interfaces are used, and how many interfaces are currently available.
+    - You will be presented with a PrettyTable in your Bash or PowerShell terminal with this report, and a .CSV file will be created with this report. 
+    - The .CSV file will be titled with today's date, and can be shared with management. 
 
-In this scenario, we have two Cisco Catalyst switches: Two Catalyst 9300 Series Switches, and one Catalyst 9400 Series Switch.
+In this scenario, we have three Cisco Catalyst switches: Two Catalyst 9300 Series Switches, and one Catalyst 9400 Series Switch:
 
 $ python main.py 
 +--------------------------------------+-------------------------------------+-----------------+-----------------+----------------+------------------+-------------+
