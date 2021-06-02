@@ -76,16 +76,28 @@ Your manager tasks you with generating a report of *existing* active interfaces 
     - The .CSV file will be titled with today's date, and can be shared with management. 
 
 The goal is to scan three Cisco Catalyst switches: Two Catalyst 9300 Series Switches, and one Catalyst 9400 Series Switch. 
-
-$ python main.py 
-+--------------------------------------+-------------------------------------+-----------------+-----------------+----------------+------------------+-------------+
-|             Switch Name              |    Switch Model   | UP Access Ports | UP Module Ports | Total UP Ports | Total DOWN Ports | Total Ports |
-+--------------------------------------+-------------------------------------+-----------------+-----------------+----------------+------------------+-------------+
-|             Switch-1                 |  C9300L-48UXG-4X  |        3        |        0        |       3        |        49        |      52     |
-|             Switch-2                 |    C9300-48UXM    |        5        |        1        |       6        |        47        |      52     |
-|             Switch-3                 |      C9410R       |        2        |        2        |       4        |        52        |      56     |
-+--------------------------------------+-------------------------------------+-----------------+-----------------+----------------+------------------+-------------+
-
+```
++---------------------------------------------+
+Geting DNA Auth Token ...
+Your token is [shown here]
++---------------------------------------------+
+Searching DNA Center Inventory for the following switches: ['switch1', 'switch2', 'switch3']...
+Detailed interface output stored in flash memory
++---------------------------------------------+
+Creating .CSV Template...
+Generating detailed report for each switch..
++---------------------------------------------+
++--------------------------------------+-----------------+-----------------+-----------------+----------------+------------------+-------------+
+|       Switch Name      |   Switch Model  | UP Access Ports | UP Module Ports | Total UP Ports | Total DOWN Ports | Total Ports |
++--------------------------------------+-----------------+-----------------+-----------------+----------------+------------------+-------------+
+|         switch1        |      C9410R     |        3        |        1        |       4        |        54        |      58     |
+|         switch2        | C9300L-48UXG-4X |        3        |        0        |       3        |        49        |      52     |
+|         switch3        | C9300L-48UXG-4X |        3        |        0        |       3        |        49        |      52     |
++--------------------------------------+-----------------+-----------------+-----------------+----------------+------------------+-------------+
++---------------------------------------------+
+Generating .CSV Report...
+CSV report created in working directory: port-report-06-02-21.csv
+```
 
 # FAQ 
 1. What is the purpose of each file?
