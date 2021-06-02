@@ -1,15 +1,21 @@
-# DNA-Get-Interface-Report
-This code is for the Cisco DNA Center Platform and has been tested on following Cisco Catalyst 9300 and 9400 switch models: **C9300L-48UXG-4X, C9300-48UXM, C9410R**
+# DNA-Get-Interface-Report.py
 
-This code is intended for network engineers tasked with providing interfaces reports on a per-switch basis.
+*This code is for the Cisco DNA Center Platform and has been tested on following Cisco Catalyst 9300 and 9400 switch models: **C9300L-48UXG-4X, C9300-48UXM, C9410R***
+
+---
+
+# Purpose
+**The purpose of this code is to assist network engineers to programatically generate an interface capacity report for fabric-enabled switches in the DNA Center Inventory.**
+
+This code is intended for network engineers tasked with providing interfaces reports on a per-switch basis.**
 
 Note:
 - You can update regular expressions within the code to get more accurate reports on different model types. 
 - This code utilizes three DNA Center APIs: 'Get Token', 'Get Device by ID' and 'Get Interface info by Id' 
 - A .CSV file will be generated at the end of this script.
 
-# Summary
-This code is particularly useful when you need to output a report of available interfaces across multiple switches.
+# Intended Audience
+This code is particularly useful for network engineers who need to generate a report of available interfaces across multiple fabric enabled switches.
 
 For example, imagine the following:
 - You have a campus building that currently has five switches. 
@@ -23,38 +29,53 @@ Run this to generate a .CSV report of interface utilizaton for each switch to pr
 - Count of Total DOWN  Ports
 - Count of Total Ports
 
-# How it works
+# How This Code Works
 This code intends to accomplish the following tasks:
-- Step 1.  Call the DNA Center API **Authentication API** with your DNA Center IP address, username, and password to generate an auth-x token for subsequent API calls.(*note: DNA parameters must be updated in config.py*)
-- Step 2. Call the DNA Center API **Get Device list** to identify all Device UUIDs based on a comma-seperated list of hostnames (*note: device list parameter must be updated in config.py*).
-- Step 3. Generate CSV Template
-- Step 4a. Call the DNA Center API **Get Device Interface count** to iterate through all Device IDs and identify all *available* interfaces, all *down* interfaces, and all *up* interfaces ( excluding Bluetooth, Management, and App interfaces, etc.)
-- Step 4b. Leverage regex to generate specific interface reports for access ports and module ports, depending on the switch series.
-- Step 5. Output a PrettyTable report of the analysis on your terminal.
-- Step 6. Generate a .CSV file report with with additional switch info, which can be shared with management. 
+1. Call the DNA Center API **Authentication API** with your DNA Center IP address, username, and password to generate an auth-x token for subsequent API calls.
+2. Call the DNA Center API **Get Device list** to identify all Device UUIDs based on a comma-seperated list of hostnames.
+3. Generate CSV Template
+4a. Call the DNA Center API **Get Device Interface count** to iterate through all Device IDs and identify all *available* interfaces, all *down* interfaces, and all *up* interfaces ( excluding Bluetooth, Management, and App interfaces, etc.)
+4b. Leverage regex to generate specific interface reports for access ports and module ports, depending on the switch series.
+5. Output a PrettyTable report of the analysis on your terminal.
+6. Generate a .CSV file report with with additional switch info, which can be shared with management. 
 
-# How to use
-1. Update "config.py" with your DNA information, including hostname, port, username, password, and comma-seperated list of switch hostnames.
-    - Do not modify any of the API calls below "# DNA API Calls"   
+# Installation Steps
 
-2. Make sure your folder has the following two files:
-    - config.py - contains DNA IP, port, username, password - and YANG data models for DNA API calls
-    - main.py - primary script
+**Bash / Ubuntu / Linux**
+1. Clone the repository from a bash terminal:
+```console
+https://github.com/james-sciortino/dna-get-interface-report.git
+```
+2. Navigate into the directory
+```console
+cd dna-get-interface-report
+```
+3. Update [config.py](config.py) with your C9800's information, including hostname or management IP address, port, username & password
+```console
+nano config.py
+```
+4. Create the virtual environment in a new sub directory
+```console
+python -m venv venv
+```
+5. Start the virtual environment and install [requirements.txt](requirements.txt) from the <dna-get-interface-report> folder:
+```console
+venv/scripts/activate
+pip install -r requirements.txt 
+```
+6. Run the code
+```console
+python main.py
+```
+# Tutorial
 
-3. From a bash or PowerShell terminal, run the following command:
-    - python main.py
-
-4. To verify all required packages are installed:
-    - pip install -r requirements.txt
-
-Example Use-Case:
 Imagine you have a building on your Campus LAN which the business plans to expand with new users, new cubicles, new Access Points, etc. 
 Your manager tasks you with generating a report of *existing* active interfaces on the *existing* switches in the building, to better understand how many new switches are required.
     - The generated report will detail how many *access* ports are used, how many *module* (or, *uplink*) interfaces are used, and how many interfaces are currently available.
     - You will be presented with a PrettyTable in your Bash or PowerShell terminal with this report, and a .CSV file will be created with this report. 
     - The .CSV file will be titled with today's date, and can be shared with management. 
 
-In this scenario, we have three Cisco Catalyst switches: Two Catalyst 9300 Series Switches, and one Catalyst 9400 Series Switch:
+The goal is to scan three Cisco Catalyst switches: Two Catalyst 9300 Series Switches, and one Catalyst 9400 Series Switch. 
 
 $ python main.py 
 +--------------------------------------+-------------------------------------+-----------------+-----------------+----------------+------------------+-------------+
@@ -64,3 +85,37 @@ $ python main.py
 |             Switch-2                 |    C9300-48UXM    |        5        |        1        |       6        |        47        |      52     |
 |             Switch-3                 |      C9410R       |        2        |        2        |       4        |        52        |      56     |
 +--------------------------------------+-------------------------------------+-----------------+-----------------+----------------+------------------+-------------+
+
+
+# FAQ 
+1. What is the purpose of each file?
+    - [config.py](config.py) - Contains DNA Center info and API calls, as strings.
+    - [main.py](main.py) - Primary code. This is the file you execute to run this code. 
+
+2. Does this code use NETCONF, RESTCONF, or both?
+
+    - This code leverages **RESTCONF** APIs and **YANG** data models only. **NETCONF** is not used.
+
+3. How do I enable RESTCONF on my Fabric Edge switches?
+    - These API calls are not sent directly to your Fabric Edge switches. Instead, each API GET request is sent to the DNA Center controller only. 
+    -  DNA Center is the central management server for all of these switches, and it already has the interface information we need!
+
+4. How do I properly modify [config.py](config.py) with the appropriate information? 
+
+
+- **DNA_FQDN ** = **IP address** or **FQDN** of your DNA Center's Enterprise VIP**
+- **DNA_PORT** = Port used for **RESTCONF** API calls on DNA. Default is **443**
+- **DNA_USER** =  **Username** with **SUPER-ADMIN-ROLE** permissons on your DNA Center controller.
+- **DNA_PASS** = **Password** of your **Username** with **SUPER-ADMIN-ROLE** permissons on your DNA Center controller.
+- **DNA_SWITCHES** = A comma-seperated list of Fabric Edge switch **hostnames** *that you want to include in your report.
+    - This variable is a Python list, and each **hostname** is a string. 
+    - For example, if you want a report on three switches - named switch1, switch2 and switch3 - the **DNA_SWITCHES** variable would be equal to *["switch1", "switch2", "switch3"]*
+
+*NOTE: Do not modify any of the API calls below the line **# DNA API Calls*** in [config.py](config.py)
+
+# Authors
+Please contact me with questions or comments.
+- James Sciortino - james.sciortino@outlook.com
+
+# License
+This project is licensed under the terms of the MIT License.
