@@ -27,10 +27,11 @@ Run this to generate a .CSV report of interface utilizaton for each switch to pr
 This code intends to accomplish the following tasks:
 - Step 1.  Call the DNA Center API **Authentication API** with your DNA Center IP address, username, and password to generate an auth-x token for subsequent API calls.(*note: DNA parameters must be updated in config.py*)
 - Step 2. Call the DNA Center API **Get Device list** to identify all Device UUIDs based on a comma-seperated list of hostnames (*note: device list parameter must be updated in config.py*).
-- Step 3. Iterate through all Device IDs and identify all *available* interfaces, all *down* interfaces, and all *up* interfaces ( excluding Bluetooth, Management, and App interfaces, etc.)
-- Step 3. Leverage regex to generate specific interface reports for access ports and module ports, depending on the switch series.
-- Step 4. Output a PrettyTable report of the analysis on your terminal.
-- Step 5. Generate a .CSV file report with with additional switch info, which can be shared with management. 
+- Step 3. Generate CSV Template
+- Step 4a. Iterate through all Device IDs and identify all *available* interfaces, all *down* interfaces, and all *up* interfaces ( excluding Bluetooth, Management, and App interfaces, etc.)
+- Step 4b. Leverage regex to generate specific interface reports for access ports and module ports, depending on the switch series.
+- Step 5. Output a PrettyTable report of the analysis on your terminal.
+- Step 6. Generate a .CSV file report with with additional switch info, which can be shared with management. 
 
 # How to use
 1. Update "config.py" with your DNA information, including hostname, port, username, password, and comma-seperated list of switch hostnames.

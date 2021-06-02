@@ -164,13 +164,12 @@ def spacer():
 # Entry point for program
 if __name__ == "__main__":
 
-    # Step 1. Obtain DNA Center auth-x token.
+    # Step 1. Call the DNA Center API Authentication API with your DNA Center IP address, username, and password to generate an auth-x token for subsequent API calls.
     spacer()
     print("Geting DNA Auth Token ...")
     login = dnac_login()
 
-    # Step 2a. Send HTTP GET Request to DNA's Network Devices API.
-    # Step 2b. For each switch hostname detailed in DNA_SWITCHES variable, get detailed interface output in .JSON format and parse into Python lists.
+    # Step 2. Call the DNA Center API Get Device list to identify all Device UUIDs based on a comma-seperated list of hostnames
     spacer()
     print("Searching DNA Center Inventory for the following switches: {}...".format(DNA_SWITCHES))
     switches = network_switches(login)
@@ -198,10 +197,10 @@ if __name__ == "__main__":
             csv_table.append([info[0],info,access,modules,up,down,total])
             break
 
-    # Step 5. Output Prettytable report to Python terminal
+    #Step 5. Output a PrettyTable report of the analysis on your terminal.
     print(device_table)
 
-    # Step 6. Generate CSV Report
+    #Step 6. Generate a .CSV file report with with additional switch info, which can be shared with management. 
     spacer()
     print("Generating .CSV Report...")
     with open('port-report-{}.csv'.format(todays_date), 'w', newline='') as file:
