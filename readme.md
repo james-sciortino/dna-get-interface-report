@@ -1,4 +1,4 @@
-# DNA-GetInterfaceReport
+# DNA-Get-Interface-Report
 This script is for the Cisco DNA Center Platform and Cisco Catalyst 9300 and 9400 Switches only. It might work on 3850 switches.
 It utilizes two DNA Center APIs: 'Get Device by ID' and 'Get Interface info by Id' 
 This script is intended for network engineers tasked with providing interfaces reports on a per-switch basis.
