@@ -7,7 +7,7 @@
 ---
 
 # Purpose
-**The purpose of this code is to assist network engineers to programatically generate an interface capacity report for fabric-enabled switches in the DNA Center Inventory.**
+**The purpose of this code is to assist network engineers to programatically generate an interface capacity report for Fabrc Edge switches in the DNA Center Inventory.**
 
 Note:
 - You can update regular expressions within the code to get more accurate reports on different model types. 
@@ -16,7 +16,7 @@ Note:
 
 # Intended Audience
 **This code is intended for network engineers tasked with providing interfaces reports on a per-switch basis.**
-This code is particularly useful for network engineers who need to generate a report of available interfaces across multiple fabric enabled switches.
+This code is particularly useful for network engineers who need to generate a report of available interfaces across multiple Fabric Edge switches.
 
 For example, imagine the following:
 - You have a campus building that currently has five switches. 
