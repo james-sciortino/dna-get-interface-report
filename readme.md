@@ -1,9 +1,12 @@
 # DNA-Get-Interface-Report
-This code is for the Cisco DNA Center Platform and has been tested on following Cisco Catalyst 9300 and 9400 switch models: *C9300L-48UXG-4X, C9300-48UXM, C9410R*
-You can update regular expressions within the code to get more accurate reports on different model types. 
-This code utilizes three DNA Center APIs: 'Get Token', 'Get Device by ID' and 'Get Interface info by Id' 
-This script is intended for network engineers tasked with providing interfaces reports on a per-switch basis.
-A .CSV file will be generated at the end of this script.
+This code is for the Cisco DNA Center Platform and has been tested on following Cisco Catalyst 9300 and 9400 switch models: **C9300L-48UXG-4X, C9300-48UXM, C9410R**
+
+This code is intended for network engineers tasked with providing interfaces reports on a per-switch basis.
+
+Note:
+- You can update regular expressions within the code to get more accurate reports on different model types. 
+- This code utilizes three DNA Center APIs: 'Get Token', 'Get Device by ID' and 'Get Interface info by Id' 
+- A .CSV file will be generated at the end of this script.
 
 # Summary
 This code is particularly useful when you need to output a report of available interfaces across multiple switches.
@@ -21,18 +24,13 @@ Run this to generate a .CSV report of interface utilizaton for each switch to pr
 - Count of Total Ports
 
 # How it works
-This Python code intends to accomplish the following tasks:
-- Step 1. Identify all Device IDs based on a comma-seperated list of hostnames (provided at the terminal)
-- Step 2. Iterate through all Device IDs. Identify all *available* interfaces, all *down* interfaces, and all *up* interfaces ( excluding Bluetooth, Management, and App interfaces).
-- Step 3. Leverage regex to parse specific interface reports for access ports and module ports, depending on the switch model.
-- Step 4. Output a PrettyTable report for each switch.
-- Step 5. *Optional* Output a .CSV file report with with additional switch info, which can be provided to management. 
-
-# For Fabric Enabled or Non-Fabric Enabled Switches:
-This code is particularly useful when you need to output a report of available interfaces across multiple switches.
-For example, if you have a campus building that currently has five floors -- and two Catalyst 9300 switches per floor.
-Management expects that the business will add additional cubicles and users to each floor, and needs port density report for the building on a per-floor basis.
-Run this code to generate the current utilization report. 
+This code intends to accomplish the following tasks:
+- Step 1.  Call the DNA Center API **Authentication API** with your DNA Center IP address, username, and password to generate an auth-x token for subsequent API calls.(*note: DNA parameters must be updated in config.py*)
+- Step 2. Call the DNA Center API **Get Device list** to identify all Device UUIDs based on a comma-seperated list of hostnames (*note: device list parameter must be updated in config.py*).
+- Step 3. Iterate through all Device IDs and identify all *available* interfaces, all *down* interfaces, and all *up* interfaces ( excluding Bluetooth, Management, and App interfaces, etc.)
+- Step 3. Leverage regex to generate specific interface reports for access ports and module ports, depending on the switch series.
+- Step 4. Output a PrettyTable report of the analysis on your terminal.
+- Step 5. Generate a .CSV file report with with additional switch info, which can be shared with management. 
 
 # How to use
 1. Update "config.py" with your DNA information, including hostname, port, username, password, and comma-seperated list of switch hostnames.
