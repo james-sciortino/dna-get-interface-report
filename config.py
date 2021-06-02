@@ -6,7 +6,7 @@ DNA_FQDN = "dna.fqdn"
 DNA_PORT = "443"
 DNA_USER =  "admin"
 DNA_PASS = "password"
-DNA_SWITCHES = ["switch1"]
+DNA_SWITCHES = ["switch1", "switch2", "switch3"]
 
 # DNA API Calls
 DNA_AUTH_API = "/dna/system/api/v1/auth/token"
