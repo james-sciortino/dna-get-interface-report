@@ -2,28 +2,28 @@
 
 # DNA-Get-Interface-Report.py
 
-*This code is for the Cisco DNA Center Platform and has been tested on following Cisco Catalyst 9300 and 9400 switch models: **C9300L-48UXG-4X, C9300-48UXM, C9410R***
+*This code is for the Cisco DNA Center platform and has been tested on following Cisco Catalyst 9300 and 9400 switch models: **C9300L-48UXG-4X, C9300-48UXM, C9410R***
 
 ---
 
 # Purpose
-**The purpose of this code is to assist network engineers to programatically generate an interface capacity report for Fabrc Edge switches in the DNA Center Inventory.**
+**The purpose of this code is to give network engineers a programmatic tool to measure the interface capacity of their Catalyst Switches managed by DNA Center.**
 
 Note:
-- You can update regular expressions within the code to get more accurate reports on different model types. 
-- This code utilizes three DNA Center APIs: 'Get Token', 'Get Device by ID' and 'Get Interface info by Id' 
+- You can update regular expressions within the code to get more accurate reports on different switch model types. 
+- This code utilizes three DNA Center APIs: 'Get Token', 'Get Device by ID' and 'Get Interface info by Id'.
 - A .CSV file will be generated at the end of this script.
 
 # Intended Audience
-**This code is intended for network engineers tasked with providing interfaces reports on a per-switch basis.**
+**This code is intended for network engineers who managed DNA Center and Catalyst switches, and need a tool for capacity planning measured at the port level**
 This code is particularly useful for network engineers who need to generate a report of available interfaces across multiple Fabric Edge switches.
 
 For example, imagine the following:
 - You have a campus building that currently has five switches. 
-- The business plans to add additional cubicles and users to each floor. 
+- The business plans to add additional cubicles and users to each floor in the coming weeks or months. 
 - The network team needs to properly plan and budget for increase port density per floor.
 
-Run this to generate a .CSV report of interface utilizaton for each switch to properly plan and budget the network expansion with the following details:
+Run this code to generate a .CSV report of interface utilizaton for each switch to properly plan and budget the network expansion with the following details:
 - Count of UP Access Ports
 - Count of UP Module Ports (or, Uplinks)
 - Count of Total UP Ports
