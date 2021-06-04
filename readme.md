@@ -43,7 +43,7 @@ This code intends to accomplish the following tasks:
 # Prerequesites
 1. Admin access to a DNA Center appliance, reachable over TCP/443
 2. Catalyst Switches managed in the DNA Center Inventory.
-3. Python installed on your local machine.
+3. [Python](https://www.python.org/downloads/) installed on your local machine.
 4. [pip](https://packaging.python.org/tutorials/installing-packages/) is installed for Python
 
 # Installation Steps
@@ -57,7 +57,7 @@ git clone https://github.com/james-sciortino/dna-get-interface-report.git
 ```console
 cd dna-get-interface-report
 ```
-3. Update [config.py](config.py) with your DNA Center information, including hostname or management IP address, port, username & password. Be sure to update the variable DNA_SWITCHES with a comma-seperated list of hostnames for each Catalyst Switch you want to report on
+3. Update [config.py](config.py) with your DNA Center information, including: FQDN or management IP address of the DNA Enterprise VIP, port, and credentials. Be sure to update the variable **DNA_SWITCHES** with a *comma-seperated Python list of hostnames for each Catalyst Switch you want to report on.*
 ```console
 nano config.py
 ```
