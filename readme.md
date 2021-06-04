@@ -40,14 +40,20 @@ This code intends to accomplish the following tasks:
 6. Output a PrettyTable report of the analysis on your terminal.
 7. Generate a .CSV file report with with additional switch info, which can be shared with management. 
 
+# Prerequesites
+1. Admin access to a DNA Center appliance, reachable over TCP/443
+2. Catalyst Switches managed in the DNA Center Inventory.
+3. Python installed on your local machine.
+4. [pip](https://packaging.python.org/tutorials/installing-packages/) is installed for Python
+
 # Installation Steps
 
 **Bash / Ubuntu / Linux**
-1. Clone the repository from a bash terminal:
+1. Clone this repository from a bash terminal:
 ```console
-https://github.com/james-sciortino/dna-get-interface-report.git
+git clone https://github.com/james-sciortino/dna-get-interface-report.git
 ```
-2. Navigate into the directory
+2. Navigate into the directory:
 ```console
 cd dna-get-interface-report
 ```
@@ -55,19 +61,15 @@ cd dna-get-interface-report
 ```console
 nano config.py
 ```
-4. Create the virtual environment in a new sub directory
+4. Install the required dependencies specified in [requirements.txt](requirements.txt) from the <dna-get-interface-report> folder:
 ```console
-python -m venv venv
+pip3 install -r requirements.txt 
 ```
-5. Start the virtual environment and install [requirements.txt](requirements.txt) from the <dna-get-interface-report> folder:
-```console
-venv/scripts/activate
-pip install -r requirements.txt 
-```
-6. Run the code
+5. Run the code from your cloned git repository:
 ```console
 python main.py
 ```
+
 # Tutorial
 
 Imagine you have a building on your Campus LAN which the business plans to expand with new users, new cubicles, new Access Points, etc. 
