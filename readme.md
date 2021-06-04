@@ -16,7 +16,7 @@ Note:
 
 # Intended Audience
 **This code is intended for network engineers who managed DNA Center and Catalyst switches, and need a tool for capacity planning measured at the port level**
-This code is particularly useful for network engineers who need to generate a report of available interfaces across multiple Fabric Edge switches.
+This code is particularly useful for network engineers who need to generate a report of available interfaces across multiple Catalyst switches.
 
 For example, imagine the following:
 - You have a campus building that currently has five switches. 
@@ -109,8 +109,8 @@ CSV report created in working directory: port-report-06-02-21.csv
 
     - This code leverages **RESTCONF** APIs and **YANG** data models only. **NETCONF** is not used.
 
-3. How do I enable RESTCONF on my Fabric Edge switches?
-    - These API calls are not sent directly to your Fabric Edge switches. Instead, each API GET request is sent to the DNA Center controller only. 
+3. How do I enable RESTCONF on my Catalyst switches?
+    - These API calls are not sent directly to your Catalyst switches. Instead, each API GET request is sent to the DNA Center controller only. 
     -  DNA Center is the central management server for all of these switches, and it already has the interface information we need!
 
 4. How do I properly modify [config.py](config.py) with the appropriate information? 
@@ -120,7 +120,7 @@ CSV report created in working directory: port-report-06-02-21.csv
 - **DNA_PORT** = Port used for **RESTCONF** API calls on DNA. Default is **443**
 - **DNA_USER** =  **Username** with **SUPER-ADMIN-ROLE** permissons on your DNA Center controller.
 - **DNA_PASS** = **Password** of your **Username** with **SUPER-ADMIN-ROLE** permissons on your DNA Center controller.
-- **DNA_SWITCHES** = A comma-seperated list of Fabric Edge switch **hostnames** *that you want to include in your report.
+- **DNA_SWITCHES** = A comma-seperated list of Catalyst switch **hostnames** *that you want to include in your report.
     - This variable is a Python list, and each **hostname** is a string. 
     - For example, if you want a report on three switches - named switch1, switch2 and switch3 - the **DNA_SWITCHES** variable would be equal to *["switch1", "switch2", "switch3"]*
 
