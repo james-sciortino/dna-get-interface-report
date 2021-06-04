@@ -51,7 +51,7 @@ https://github.com/james-sciortino/dna-get-interface-report.git
 ```console
 cd dna-get-interface-report
 ```
-3. Update [config.py](config.py) with your C9800's information, including hostname or management IP address, port, username & password
+3. Update [config.py](config.py) with your DNA Center information, including hostname or management IP address, port, username & password. Be sure to update the variable DNA_SWITCHES with a comma-seperated list of hostnames for each Catalyst Switch you want to report on
 ```console
 nano config.py
 ```
@@ -71,12 +71,14 @@ python main.py
 # Tutorial
 
 Imagine you have a building on your Campus LAN which the business plans to expand with new users, new cubicles, new Access Points, etc. 
+
 Your manager tasks you with generating a report of *existing* active interfaces on the *existing* switches in the building, to better understand how many new switches are required.
     - The generated report will detail how many *access* ports are used, how many *module* (or, *uplink*) interfaces are used, and how many interfaces are currently available.
-    - You will be presented with a PrettyTable in your Bash or PowerShell terminal with this report, and a .CSV file will be created with this report. 
-    - The .CSV file will be titled with today's date, and can be shared with management. 
+    - You will be presented with a PrettyTable in your Bash or PowerShell terminal with this report
+    - A.CSV file will be generated with this report, and can be shared with management. 
 
-The goal is to scan three Cisco Catalyst switches: Two Catalyst 9300 Series Switches, and one Catalyst 9400 Series Switch. 
+In the the example below, tThe goal is to scan three Cisco Catalyst switches: Two Catalyst 9300 Series Switches, and one Catalyst 9400 Series Switch. 
+
 ```
 +---------------------------------------------+
 Geting DNA Auth Token ...
